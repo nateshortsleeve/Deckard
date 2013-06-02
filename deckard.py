@@ -1,26 +1,33 @@
 #----------------------------------------------
 #Cleverbot conversation loop
 import cleverbot
-import speech
+import sys, string, os
+cb = cleverbot.Session()
+print "ready"
+while True:
+    input = raw_input()
+    input_file = open('input.txt', 'w')
+    input_file.truncate()
+    input_file.write(input)
+    input_file.close()
+    
+    cb = cleverbot.Session()
+    response = cb.Ask(input)
+    print "Cleverbot: ", response
+    output_file = open('output.txt', 'w')
+    output_file.truncate()
+    output_file.write(response)
+    output_file.close()
+    
+    #send to cleverbot and output response to output.txt
+    #execute balbolka for synthesis
+    balbabolka_string = "balabolka_console.exe -f output.txt -n \"Microsoft Anna\" -o --ignorelength | oggenc2.exe --ignorelength - -o output.ogg"
+    os.system(balbabolka_string)
+    vlc_string = "play_speech.bat"
+    os.system(vlc_string)
 
-# Your program can do whatever it wants now, and when a spoken phrase is heard,
-# response() will be called on a separate thread.
-from time import *
-##print "loading..."
-####while listener.islistening():
-####    time.sleep(1)
-##    #print "Still waiting..."
-##cb = cleverbot.Session()
-##
-##print "Say something, user!"
-##phrase = speech.input()
-##print "Me: ", phrase
-##respond = cb.Ask(phrase)
-##sleep(1)
-##print "Cleverbot: ", respond
-#speech.say(respond)
-input = None
-while input != "off"
-    print "_"
-    input = speech.input()
-    speech.say(input)
+    
+    
+    
+    
+    
