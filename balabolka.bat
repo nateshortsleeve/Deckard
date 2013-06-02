@@ -1,2 +1,2 @@
-balabolka_console.exe -f "output.txt" -w "output.wav" -n "Microsoft Anna"
+balabolka_console.exe -f output.txt -n "Microsoft Anna" -o --ignorelength | oggenc2.exe --ignorelength - -o output.ogg
 PAUSE
